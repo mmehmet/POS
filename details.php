@@ -1,0 +1,30 @@
+<?php
+$bc1 = strpos($xmldata,"<barcode>")+9;
+$bc2 = strpos($xmldata,"</barcode>");
+$bc3 = substr_replace($xmldata,"",$bc2);
+$bcd = substr_replace($bc3,"",0,$bc1);
+$d1 = strpos($xmldata,"<description>")+13;
+$d2 = strpos($xmldata,"</description>");
+$d3 = substr_replace($xmldata,"",$d2);
+$desc = substr_replace($d3,"",0,$d1);
+$c1 = strpos($xmldata,"<count>")+7;
+$c2 = strpos($xmldata,"</count>");
+$c3 = substr_replace($xmldata,"",$c2);
+$cnt = substr_replace($c3,"",0,$c1);
+$p1 = strpos($xmldata,"<po>")+4;
+$p2 = strpos($xmldata,"</po>");
+$p3 = substr_replace($xmldata,"",$p2);
+$po = substr_replace($p3,"",0,$p1);
+$pr1 = strpos($xmldata,"<price>")+7;
+$pr2 = strpos($xmldata,"</price>");
+$pr3 = substr_replace($xmldata,"",$pr2);
+$price = substr_replace($pr3,"",0,$pr1);
+$cs1 = strpos($xmldata,"<cost>")+6;
+$cs2 = strpos($xmldata,"</cost>");
+$cs3 = substr_replace($xmldata,"",$cs2);
+$cost = substr_replace($cs3,"",0,$cs1);
+$s1 = strpos($xmldata,"<staff>")+7;
+$s2 = strpos($xmldata,"</staff>");
+$s3 = substr_replace($xmldata,"",$s2);
+$stfn = substr_replace($s3,"",0,$s1);
+?>

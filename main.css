@@ -1,0 +1,42 @@
+body				{background-color: white; font-family:"Arial",sans-serif;margin-top:45px;}
+a:link			{text-decoration:none; color: #0000bb;}
+a:visited			{text-decoration:none; color: #0000bb;}
+a:hover			{text-decoration:none; color: #0066ff;}
+[readonly]			{background-color: #bababa;color:#00b;border:none;margin-top:5px;}
+#totsal			{background-color: #ffc;color:#405;border:none;margin-top:5px;font-weight:bold;padding:2px;text-align:right;}
+#sanity			{position:fixed;top:40px;width:120px;left:50%;margin-left:-60px;background-color:#efefef;padding:3px;text-align:center;border: 1px groove #999;}
+#invform			{position:absolute;top:20px;width:720px;left:50%;margin-left:-360px;background-color: #bababa;padding:5px;text-align:center;border: 1px groove #666;}
+#docket			{position:absolute;top:50px;width:720px;height:80px;overflow:auto;left:50%;margin-left:-360px;background-color: #bababa;padding:5px;text-align:center;border: 1px groove #666;}
+#footr			{position:fixed;font-weight:bold;top:140px;width:720px;left:50%;margin-left:-360px;background-color: #bababa;padding:5px;border-left: 1px solid #666;border-right: 1px solid #666;border-bottom: 1px solid #666;}
+#cshdt			{float:right;margin-left:5px;}
+#salesrec			{position:absolute;top:20px;width:720px;left:50%;margin-left:-360px;background-color: #efefef;padding:5px;text-align:center;border: 1px groove #999;}
+#clz				{position:absolute;top:5px;right:5px;}
+.ttl				{padding:5px;text-align:right;float:right;}
+.login			{float:right;padding:10px;color:yellow;}
+.mainttl			{padding:5px;font-weight:bold;}
+.itm				{float:right;padding:5px;margin-top:-5px;padding-left:10px;width:65px;text-align:right;}
+.lbl				{float:left;padding:5px;padding-right:10px;width:55px;text-align:left;}
+.inpt				{padding:5px;font-weight:bold;height:20px;}
+.box				{background-color:#ffd;border:1px solid black;padding:5px;}
+.ctl				{top: 0px;left: 0px;position: fixed;width: 100%;height: 36px;background-image: url(pbg.png);}
+.btn				{font-weight: bold;font-size: 1em;text-align: center;border: 1px groove #303;background-color: #507;padding: 2px;color: #ffb;margin:6px;}
+.btn:hover			{color: white;background-color: #708;}
+.sbm				{font-weight: bold;font-size: 1em;text-align: center;border: 1px groove #303;background-color: #507;padding: 2px;color: #ffb;position:absolute;right:5px;}
+.sbm:hover			{color: white;background-color: #708;}
+.yo				{font-weight: bold;font-size: 2em;text-align: center;border: 1px solid white;background-color: #090;padding: 5px;color: white;}
+.yo:hover			{color: yellow;background-color: #3f3;}
+.nup				{font-weight: bold;font-size: 2em;text-align: center;border: 1px solid white;background-color: #900;padding: 5px;color: white;}
+.nup:hover			{color: yellow;background-color: red;}
+.hed				{background-color: #444;color:white;font-weight:bold;text-align:center;}
+table				{border-collapse:collapse;}
+table.t			{width:100%;}
+table tr.d1			{background-color: #dedede;border: 1px solid white;}
+table tr.d0			{background-color: #efefef;border: 1px solid white;}
+table td			{padding:2px;border-right: 2px solid white;padding-left:2px;}
+table td.hd			{background-color: #999;color:white;font-weight:bold;}
+table td.del		{background-color: white;font-weight:bold;}
+table td.del a		{color: red;}
+table td.del a:hover	{color: white;background-color: red;}
+table td.butn		{text-align: center;border: 1px solid orange;background-color: #330022;padding: 2px;}
+table td.butn a		{color: yellow;}
+table td.butn a:hover	{color: white;}
