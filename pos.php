@@ -10,7 +10,7 @@ $stfid=999;
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Expires" content="-1">
-	<title>Hard Disk Cafe Point-Of-Sale System</title>
+	<title>My Point-Of-Sale System</title>
 	<link href="favicon.ico" rel="icon" type="image/x-icon" />
 	<link rel="stylesheet" type="text/css" href="main.css" />
 	<style type="text/css">
