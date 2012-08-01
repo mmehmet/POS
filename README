@@ -1,0 +1,9 @@
+Version 1.0
+
+This is the preliminary proof-of-concept I slapped together for a PHP-based Point Of Sale system, with inventory management.
+
+This version uses XML for both inventory and sales records and MySQL for username/password processing. Depending on the application, it can easliy be modified to use MySQL for everything but I found it simpler here to process (plaintext) XML files - there are also log files which are updated when a user logs in, logs out, interacts with the inventory, or makes a sale - basically everything is logged and timestamped...
+
+You need to pay close attention to the file permissions on those logs, for (hopefully obvious) security reasons.
+
+Most of this code was revised into a much more OO version for deployment, allowing for someone else to come in and easily make modifications, as required. I uploaded this version as a starting base, for anyone else interested in developing such a system. I'm sure I have a copy of the OO version somewhere - once I find it I will push out an update organised into a nice MVC (Zend) framework.
