@@ -1,6 +1,7 @@
 <?php
 	define('DB_HOST', 'localhost');
-	define('DB_USER', 'pos');
-	define('DB_PASSWORD', 'there is no password here');
-	define('DB_DATABASE', 'pos');
+	define('DB_USER', 'test');
+	define('DB_PASSWORD', 'nopassword');
+	define('DB_DATABASE', 'test');
+// THESE DETAILS WILL NEED TO BE CHANGED FOR LIVE ENVIRONMENT!
 ?>

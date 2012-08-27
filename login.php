@@ -61,7 +61,7 @@ if($errflag) {
 }
 	
 	//Create query
-$qry="SELECT * FROM staff WHERE login='$login' AND passwd='".md5($_POST['password'])."'";
+$qry="SELECT * FROM pos_users WHERE user_login='$login' AND user_password='".md5($_POST['password'])."'";
 $result=mysql_query($qry);
 	
 	//Check whether the query was successful or not
@@ -70,18 +70,26 @@ if($result) {
 		//Login Successful
 		session_regenerate_id();
 		$staff = mysql_fetch_assoc($result);
+		$staffid = $staff['user_num'];
 		$_SESSION['SESS_SID'] = session_id();
-		$_SESSION['SESS_STAFF_ID'] = $staff['staff_id'];
-		$_SESSION['SESS_FIRST_NAME'] = $staff['firstname'];
-		$_SESSION['SESS_LAST_NAME'] = $staff['lastname'];
+		$_SESSION['SESS_STAFF_ID'] = $staffid;
+		$_SESSION['SESS_STAFF_NAME'] = $staff['user_name'];
+        $_SESSION['SESS_GROUP'] = $staff['user_access'];
+		$_SESSION['SESS_LAST_ACCESS'] = $staff['user_lastaccess'];
 		$_SESSION['SESS_LAST_UA'] = $_SERVER['HTTP_USER_AGENT'];
 		$_SESSION['SESS_LAST_IP'] = ip2long($_SERVER['REMOTE_ADDR']);
 		session_write_close();
-		$filename =	getcwd()."/logs/st".$staff['staff_id'].".log";
+		$accesslog = "UPDATE pos_users SET user_lastaccess='".date(DATE_RFC822)."' WHERE user_num=$staffid";
+		mysql_query($accesslog);
+		$filename =	getcwd()."/logs/st".$staffid.".log";
 		$fh = fopen($filename,'a') or die("can't open file");
 		fwrite($fh,"login-".date(DATE_RFC822)."\r");
 		fclose($fh);
-		header("location: pos.php");
+		if($staff['user_access'] == "back") {
+			header("location: inventory.php");
+		} else {
+			header("location: pos.php");
+		}
 		exit();
 	}else {
 		//Login failed

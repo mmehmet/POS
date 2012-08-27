@@ -1,9 +1,8 @@
 <?php
-//include 'auth.php';
-//$staffname = $_SESSION['SESS_FIRST_NAME']." ".$_SESSION['SESS_LAST_NAME'];
-//$stfid = $_SESSION['SESS_STAFF_ID'];
-$staffname="Test Case";
-$stfid=999;
+include 'auth.php';
+$staffnam = $_SESSION['SESS_STAFF_NAME'];
+$stfid = $_SESSION['SESS_STAFF_ID'];
+$stgrp = $_SESSION['SESS_GROUP'];
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-AU" lang="en-AU">
 <head>
@@ -83,9 +82,14 @@ $stfid=999;
 <input type="hidden" name="dfdo" value="add" />
 <div class="ctl">
 	<input type="button" name="additem" onclick="javascript:toggle('invform');document.item.bcode.focus();" value="NEW ITEM" class="btn" title="add a new item to the inventory" />
-	<input type='button' onclick="javascript:window.location.href='pos.php';" value='POS' class='btn' title="switch to Point Of Sale screen" />
+<?php
+	//ONLY GIVE USERS WITH FULL ACCESS A POINT-OF-SALE BUTTON
+    if($stgrp == "full") {
+        print "	<a href='pos.php' class='btn' alt='switch to Point Of Sale screen'>POS</a>";
+	}
+?>
 	<input type='button' onclick="javascript:window.location.href='logout.php';" value='LOGOUT' class='btn' style="float:right" />
-	<span class="login"><em>Currently logged in as <?php echo $staffname;?></em></span>
+	<span class="login"><em>Currently logged in as <?php echo $staffnam;?></em></span>
 </div>
 <p>Here is the inventory as it currently stands...</p>
 <span id="invform" style="text-align:left;margin-top:45px;">
@@ -97,7 +101,7 @@ $stfid=999;
 	<div style="padding:5px;font-weight:bold;margin-top:5px;"><label>Cost Price (ea):</label> $<input type="text" name="cst" value="0.00" onblur="fixup()" />
 		<div style='float:right;padding:5px;margin-top:-5px;margin-right:35px;'><label>Sell Price (ea):</label> $<input type="text" name="prc" value="0.00" onblur="fixit()" />
 		<div style='float:right;padding:5px;font-weight:bold;margin-top:-30px;'><input type="button" onclick="javascript:toggle('sanity');" value="DONE" class="sbm" /></div></div></div>
-<input type="hidden" name="staff" value="<?php echo $staffname;?>" />
+<input type="hidden" name="staff" value="<?php echo $staffnam;?>" />
 <input type="hidden" name="stid" value="<?php echo $stfid;?>" />
 </span>
 <span id="sanity" style="margin-top:35px"><div class="hed">ARE YOU SURE?</div>

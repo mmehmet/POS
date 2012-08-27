@@ -5,6 +5,7 @@ session_start();
 	//Check whether the session variable SESS_STAFF_ID is present or not
 if(!isset($_SESSION['SESS_STAFF_ID']) || (trim($_SESSION['SESS_STAFF_ID']) == '')) {
 	header("location: index.php");
+	//GO BACK TO THE LOGIN FORM
 	exit();
 }
 
