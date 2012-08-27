@@ -7,3 +7,17 @@ This version uses XML for both inventory and sales records and MySQL for usernam
 You need to pay close attention to the file permissions on those logs, for (hopefully obvious) security reasons.
 
 Most of this code was revised into a much more OO version for deployment, allowing for someone else to come in and easily make modifications, as required. I uploaded this version as a starting base, for anyone else interested in developing such a system. I'm sure I have a copy of the OO version somewhere - once I find it I will push out an update organised into a nice MVC (Zend) framework.
+
+For testing purposes, here are details of the MySQL table used for logging in:
+
+table: pos_users
+
+    FIELD       |   TYPE        |   USEFUL TO KNOW
+user_login      | char(1)       | username for login - 10char limit, UNIQUE flag
+user_password   | varchar(32)   | password for login - using MD5 hash (here)
+user_access     | varchar(5)    | user accress groups - can be "front" or "back" or "full"
+user_name       | varchar(30)   | human-readable NAME of user
+user_email      | varchar(64)   | email address (not used in this version)
+user_creation   | timestamp     | CURRENT_TIMESTAMP (probably could be deprecated)
+user_lastaccess | varchar(30)   | UNIQUE flag, the php updates the timestamp here at login with date()
+user_num        | int(1)        | PRIMARY index, UNIQUE flag, auto_increment
