@@ -4,12 +4,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Expires" content="-1">
-	<title>Hard Disk Cafe</title>
+	<title>POS-Wiz</title>
 	<link href="favicon.ico" rel="icon" type="image/x-icon" />
 	<link rel="stylesheet" type="text/css" href="main.css" />
 </head>
 <body>
-<p>&nbsp;</p>
+<h1>POS-Wiz</h1><br />
 <form id="loginForm" name="loginForm" method="post" action="login.php">
   <table width="300" border="0" align="center" cellpadding="2" cellspacing="0">
     <tr>
@@ -30,5 +30,13 @@
 Administrator account: admin/admin (full access)<br />
 Front-of-house staff: basimpson/logmein (access only to POS)<br />
 Random back-office staff: jajoplin/password (access only to INVENTORY
+<?php
+// start session
+session_start();
+
+if ($_SESSION['ERRMSG']) {
+	print "<div id='error'>login incorrect</div>";
+}
+?>
 </body>
 </html>

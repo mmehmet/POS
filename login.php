@@ -1,80 +1,49 @@
 <?php
-	//Start session
+// start session
 session_start();
 
 if (empty($_SESSION['count'])) {
- $_SESSION['count'] = 1;
+	$_SESSION['count'] = 1;
 } else {
- $_SESSION['count']++;
+	$_SESSION['count']++;
 }
 	
-	//Include database connection details
-require_once('tpac.php');
-	
-	//Array to store validation errors
-$errmsg_arr = array();
-	
-	//Validation error flag
+// connect to database and load up usre account functions
+require_once('acct.php');
 $errflag = false;
-	
-	//Connect to mysql server
-$link = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
-if(!$link) {
-	die('Failed to connect to server: ' . mysql_error());
+
+function errmsg() {
+	$errflag = true;
+	$_SESSION['ERRMSG'] = 1;
+	// just wait a few seconds to fuck with brute force attacks
+	// sleep(5);
+	session_write_close();
+	header("location:index.php");
+	return;
 }
-	
-	//Select database
-$db = mysql_select_db(DB_DATABASE);
-if(!$db) {
-	die("Unable to select database");
-}
-	
-	//Function to sanitize values received from the form. Prevents SQL injection
-function clean($str) {
-	$str = @trim($str);
-	if(get_magic_quotes_gpc()) {
-		$str = stripslashes($str);
-	}
-	return mysql_real_escape_string($str);
-}
-	
-	//Sanitize the POST values
+
+// sanitize and process the form values
 $login = clean($_POST['login']);
 $password = clean($_POST['password']);
-
-	//Input Validations
-if($login == '') {
-	$errmsg_arr[] = 'Login ID missing';
-	$errflag = true;
-}
-if($password == '') {
-	$errmsg_arr[] = 'Password missing';
-	$errflag = true;
+if($login == '' || $password == '') {
+	return errmsg();
 }
 	
-	//If there are invalidations, redirect back to the login form
-if($errflag) {
-	$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
-	session_write_close();
-	header("location: index.php");
-	exit();
-}
+// create query
+$checkUsers=mysql_query("SELECT * FROM pos_users WHERE user_login='$login'");
 	
-	//Create query
-$qry="SELECT * FROM pos_users WHERE user_login='$login' AND user_password='".md5($_POST['password'])."'";
-$result=mysql_query($qry);
-	
-	//Check whether the query was successful or not
-if($result) {
-	if(mysql_num_rows($result) == 1) {
-		//Login Successful
-		session_regenerate_id();
-		$staff = mysql_fetch_assoc($result);
+// check whether the query was successful or not
+if(mysql_num_rows($checkUsers) == 1) {
+	session_regenerate_id();
+	$staff = mysql_fetch_assoc($checkUsers);
+	$dbpass = $staff['user_password'];
+	if(comparePassword($password, $dbpass)) {
+		// SUCCESS!
 		$staffid = $staff['user_num'];
 		$_SESSION['SESS_SID'] = session_id();
 		$_SESSION['SESS_STAFF_ID'] = $staffid;
 		$_SESSION['SESS_STAFF_NAME'] = $staff['user_name'];
-        $_SESSION['SESS_GROUP'] = $staff['user_access'];
+		$_SESSION['SESS_GROUP'] = $staff['user_access'];
 		$_SESSION['SESS_LAST_ACCESS'] = $staff['user_lastaccess'];
 		$_SESSION['SESS_LAST_UA'] = $_SERVER['HTTP_USER_AGENT'];
 		$_SESSION['SESS_LAST_IP'] = ip2long($_SERVER['REMOTE_ADDR']);
@@ -90,13 +59,9 @@ if($result) {
 		} else {
 			header("location: pos.php");
 		}
-		exit();
-	}else {
-		//Login failed
-		header("location: index.php");
-		exit();
+	} else {
+		return errmsg();
 	}
-}else {
-	die("Query failed");
+} else {
+	return errmsg();
 }
-?>
