@@ -14,7 +14,7 @@ table: pos_users
 
     FIELD       |   TYPE        |   USEFUL TO KNOW
 user_login      | char(1)       | username for login - 10char limit, UNIQUE flag
-user_password   | varchar(32)   | password for login - using MD5 hash (here)
+user_password   | varchar(160)  | password for login - stored as whirlpool hash with 8-char salt
 user_access     | varchar(5)    | user accress groups - can be "front" or "back" or "full"
 user_name       | varchar(30)   | human-readable NAME of user
 user_email      | varchar(64)   | email address (not used in this version)
